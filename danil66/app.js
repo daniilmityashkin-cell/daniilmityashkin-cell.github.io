@@ -1,3 +1,4 @@
+document.documentElement.classList.add('js');
 (() => {
   const pad = n => String(n).padStart(2, '0');
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -61,7 +62,18 @@
     });
     flow.addEventListener('keydown', e => { if (e.key === 'ArrowLeft') go(-1); if (e.key === 'ArrowRight') go(1); });
 
-    new IntersectionObserver(es => es.forEach(e => { visible = e.isIntersecting; render(); }), { threshold: .35 }).observe(stage);
+    new IntersectionObserver(es => es.forEach(e => {
+      visible = e.isIntersecting;
+      if (visible && !flow.classList.contains('open')) setTimeout(() => flow.classList.add('open'), 250);
+      render();
+    }), { threshold: .3 }).observe(stage);
+    // tilt the media inside the active card after the cursor
+    stage.addEventListener('pointermove', e => {
+      const c = e.target.closest('.card.on'); if (!c) return;
+      const r = c.getBoundingClientRect();
+      c.style.setProperty('--ry', ((e.clientX - r.left) / r.width - .5) * 10 + 'deg');
+      c.style.setProperty('--rx', (.5 - (e.clientY - r.top) / r.height) * 8 + 'deg');
+    });
     addEventListener('resize', render);
     render();
   });
@@ -77,6 +89,61 @@
   modal.addEventListener('click', e => { if (e.target === modal || e.target.classList.contains('x')) closeModal(); });
   addEventListener('keydown', e => { if (e.key === 'Escape' && !modal.hidden) closeModal(); });
   document.querySelectorAll('[data-reel]').forEach(b => b.addEventListener('click', () => { openModal(b.dataset.reel, 'video'); goal('showreel_open'); }));
+
+
+  // ================= motion layer =================
+  const hero = document.querySelector('.hero');
+  // intro
+  const start = () => requestAnimationFrame(() => document.body.classList.add('loaded'));
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(start); else addEventListener('load', start);
+  setTimeout(start, 2500);   // safety net
+
+  // reveal on scroll
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .15, rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
+
+  if (!reduce) {
+    // mouse parallax + cursor light
+    const light = document.querySelector('.cursor-light');
+    addEventListener('pointermove', e => {
+      if (e.pointerType !== 'mouse') return;
+      hero.style.setProperty('--mx', (e.clientX / innerWidth - .5).toFixed(3));
+      hero.style.setProperty('--my', (e.clientY / innerHeight - .5).toFixed(3));
+      light.style.setProperty('--cx', e.clientX + 'px'); light.style.setProperty('--cy', e.clientY + 'px');
+    }, { passive: true });
+    // hero dissolves while scrolling
+    const onScroll = () => hero.style.setProperty('--sp', Math.min(1, scrollY / innerHeight).toFixed(3));
+    addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+    // living dust in the hero (smoke-like particles drifting on a flow field)
+    const cv = hero.querySelector('.dust'), cx = cv.getContext('2d');
+    let W, H, P = [], run = false, mx = -1e4, my = -1e4;
+    const dpr = Math.min(2, devicePixelRatio || 1);
+    const size = () => {
+      W = cv.width = hero.clientWidth * dpr; H = cv.height = hero.clientHeight * dpr;
+      const n = innerWidth < 700 ? 90 : 190;
+      P = Array.from({ length: n }, () => ({ x: Math.random() * W, y: Math.random() * H, r: (Math.random() * 1.6 + .4) * dpr, a: Math.random() * .55 + .1, s: Math.random() * .6 + .2 }));
+    };
+    size(); addEventListener('resize', size);
+    hero.addEventListener('pointermove', e => { const r = hero.getBoundingClientRect(); mx = (e.clientX - r.left) * dpr; my = (e.clientY - r.top) * dpr; });
+    hero.addEventListener('pointerleave', () => { mx = my = -1e4; });
+    let t = 0;
+    const tick = () => {
+      if (!run) return;
+      t += .004; cx.clearRect(0, 0, W, H);
+      for (const p of P) {
+        const ang = Math.sin(p.x * .0021 + t) + Math.cos(p.y * .0017 - t * 1.3);   // smooth swirling field
+        p.x += Math.cos(ang) * p.s * dpr + .15 * dpr; p.y += Math.sin(ang) * p.s * dpr - .25 * dpr;
+        const dx = p.x - mx, dy = p.y - my, d2 = dx * dx + dy * dy;
+        if (d2 < 22000 * dpr * dpr) { const f = 1.8 / Math.sqrt(d2 + 1); p.x += dx * f; p.y += dy * f; }   // push away from cursor
+        if (p.x < -10) p.x = W + 10; if (p.x > W + 10) p.x = -10; if (p.y < -10) p.y = H + 10; if (p.y > H + 10) p.y = -10;
+        cx.globalAlpha = p.a * (.6 + .4 * Math.sin(t * 6 + p.x));
+        cx.fillStyle = '#fff'; cx.beginPath(); cx.arc(p.x, p.y, p.r, 0, 7); cx.fill();
+      }
+      requestAnimationFrame(tick);
+    };
+    new IntersectionObserver(es => { run = es[0].isIntersecting; if (run) requestAnimationFrame(tick); }).observe(hero);
+  }
 
   // ---------- goals ----------
   document.addEventListener('click', e => { if (e.target.closest('a[href*="t.me/noirout"]')) goal('tg_click'); });

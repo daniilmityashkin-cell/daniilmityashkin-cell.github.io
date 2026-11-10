@@ -11,7 +11,7 @@
   <meta name="theme-color" content="#050505">
   <link rel="icon" href="brand/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="fonts/unbounded-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="style.css?v=1">
+  <link rel="stylesheet" href="style.css?v=2">
   <!-- Yandex.Metrika counter -->
   <script type="text/javascript">
       (function(m,e,t,r,i,k,a){
@@ -27,6 +27,7 @@
 <body>
 <noscript><div><img src="https://mc.yandex.ru/watch/114162135" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 
+<div class="cursor-light" aria-hidden="true"></div>
 <div class="hud tl">DANIL66 — visual<br>video · motion · design</div>
 <div class="hud tr">Ufa · RU<br>54.73° N 55.96° E</div>
 <div class="hud bl">© 2026 DANIL66</div>
@@ -34,20 +35,23 @@
 
 <main>
   <section class="hero" id="top">
-    <div class="orb" aria-hidden="true"></div><div class="glow" aria-hidden="true"></div>
-    <img class="logo" src="brand/66-smoke.webp" alt="66 — логотип DANIL66" width="1094" height="917">
-    <h1 class="name streak" data-t="DANIL66">DANIL66</h1>
-    <p class="sub">Видео · монтаж · дизайн · SMM</p>
-    <nav class="pills" aria-label="Разделы">
-      <a class="pill" href="#reels">Reels</a><a class="pill" href="#video">Видео</a><a class="pill" href="#design">Дизайн</a><a class="pill" href="#about">Обо мне</a><a class="pill" href="#prices">Прайс</a>
-    </nav>
-    <div class="socials"><a href="https://t.me/noirout" target="_blank" rel="noopener">Telegram</a><a href="https://instagram.com/prostoout" target="_blank" rel="noopener">Instagram</a><a href="https://vk.ru/prostout" target="_blank" rel="noopener">VK</a></div>
+    <div class="orb" aria-hidden="true"></div><div class="glow" aria-hidden="true"></div><canvas class="dust" aria-hidden="true"></canvas>
+    <div class="hero-in">
+      <img class="logo" src="brand/66-smoke.webp" alt="66 — логотип DANIL66" width="1094" height="917">
+      <h1 class="name streak" data-t="DANIL66" aria-label="DANIL66"><span class="ch" style="--i:0">D</span><span class="ch" style="--i:1">A</span><span class="ch" style="--i:2">N</span><span class="ch" style="--i:3">I</span><span class="ch" style="--i:4">L</span><span class="ch" style="--i:5">6</span><span class="ch" style="--i:6">6</span></h1>
+      <p class="sub">Видео · монтаж · дизайн · SMM</p>
+      <nav class="pills" aria-label="Разделы">
+        <a class="pill" href="#reels">Reels</a><a class="pill" href="#video">Видео</a><a class="pill" href="#design">Дизайн</a><a class="pill" href="#about">Обо мне</a><a class="pill" href="#prices">Прайс</a>
+      </nav>
+      <div class="socials"><a href="https://t.me/noirout" target="_blank" rel="noopener">Telegram</a><a href="https://instagram.com/prostoout" target="_blank" rel="noopener">Instagram</a><a href="https://vk.ru/prostout" target="_blank" rel="noopener">VK</a></div>
+    </div>
     <div class="reel-line"><button class="chip" data-reel="/showreel.mp4">▶ Showreel 2026</button></div>
   </section>
 
-  <section class="sec" id="reels">
-    <div class="sec-head"><span class="num">01</span><h2 class="streak" data-t="Reels">Reels</h2><span class="outline">вертикальные ролики</span></div>
-    <div class="flow v" data-flow tabindex="0" aria-label="Reels">
+  <div class="marquee" aria-hidden="true"><div class="track"><span>Video · Motion · Design · SMM · Reels · </span><span>Video · Motion · Design · SMM · Reels · </span><span>Video · Motion · Design · SMM · Reels · </span><span>Video · Motion · Design · SMM · Reels · </span></div></div>
+  <section class="sec" data-amb id="reels">
+    <div class="sec-head" data-reveal><span class="num">01</span><h2 class="streak" data-t="Reels">Reels</h2><span class="outline">вертикальные ролики</span></div>
+    <div data-reveal class="flow v" data-flow tabindex="0" aria-label="Reels">
       <button class="arrow prev" aria-label="Назад">←</button>
       <div class="stage">
       <figure class="card" data-cap="Коммерческий Эдит KNIVES"><video src="/kenvforestdemo.mp4?v=1794303642" poster="/static/media/other/knives-forest-demo.jpg" muted loop playsinline preload="none"></video><span class="snd" aria-hidden="true">♪</span></figure>
@@ -66,12 +70,12 @@
       <button class="arrow next" aria-label="Вперёд">→</button>
       <div class="flow-meta"><span class="cap"></span><span class="cnt"></span></div>
     </div>
-    <div class="links"><a href="#prices">Прайс →</a><a href="https://t.me/noirout" target="_blank" rel="noopener">Заказать →</a></div>
+    <div class="links" data-reveal><a href="#prices">Прайс →</a><a href="https://t.me/noirout" target="_blank" rel="noopener">Заказать →</a></div>
   </section>
 
-  <section class="sec" id="video">
-    <div class="sec-head"><span class="num">02</span><h2 class="streak" data-t="Видео">Видео</h2><span class="outline">горизонтальные ролики</span></div>
-    <div class="flow h" data-flow tabindex="0" aria-label="Видео">
+  <section class="sec" data-amb id="video">
+    <div class="sec-head" data-reveal><span class="num">02</span><h2 class="streak" data-t="Видео">Видео</h2><span class="outline">горизонтальные ролики</span></div>
+    <div data-reveal class="flow h" data-flow tabindex="0" aria-label="Видео">
       <button class="arrow prev" aria-label="Назад">←</button>
       <div class="stage">
       <figure class="card" data-cap="Трендовый Reels"><video src="/пожарdemo.mp4?v=1794303642" poster="/static/media/other/fire-demo.jpg" muted loop playsinline preload="none"></video><span class="snd" aria-hidden="true">♪</span></figure>
@@ -86,12 +90,12 @@
       <button class="arrow next" aria-label="Вперёд">→</button>
       <div class="flow-meta"><span class="cap"></span><span class="cnt"></span></div>
     </div>
-    <div class="links"><a href="#prices">Прайс →</a><a href="https://t.me/noirout" target="_blank" rel="noopener">Заказать →</a></div>
+    <div class="links" data-reveal><a href="#prices">Прайс →</a><a href="https://t.me/noirout" target="_blank" rel="noopener">Заказать →</a></div>
   </section>
 
-  <section class="sec" id="design">
-    <div class="sec-head"><span class="num">03</span><h2 class="streak" data-t="Дизайн">Дизайн</h2><span class="outline">айдентика и соцсети</span></div>
-    <div class="flow d" data-flow tabindex="0" aria-label="Дизайн">
+  <section class="sec" data-amb id="design">
+    <div class="sec-head" data-reveal><span class="num">03</span><h2 class="streak" data-t="Дизайн">Дизайн</h2><span class="outline">айдентика и соцсети</span></div>
+    <div data-reveal class="flow d" data-flow tabindex="0" aria-label="Дизайн">
       <button class="arrow prev" aria-label="Назад">←</button>
       <div class="stage">
       <figure class="card" data-cap="Лендинг xamauto.ru — первый экран"><img src="/static/media/xam/site.jpg?v=1790855872" alt="Лендинг xamauto.ru — первый экран" loading="lazy"></figure>
@@ -116,13 +120,14 @@
       <button class="arrow next" aria-label="Вперёд">→</button>
       <div class="flow-meta"><span class="cap"></span><span class="cnt"></span></div>
     </div>
-    <div class="links"><a href="#prices">Прайс →</a><a href="https://t.me/noirout" target="_blank" rel="noopener">Заказать →</a></div>
+    <div class="links" data-reveal><a href="#prices">Прайс →</a><a href="https://t.me/noirout" target="_blank" rel="noopener">Заказать →</a></div>
   </section>
 
-  <section class="sec" id="about">
-    <div class="sec-head"><span class="num">04</span><h2 class="streak" data-t="Обо мне">Обо мне</h2></div>
+  <div class="marquee rev" aria-hidden="true"><div class="track"><span>DANIL66 · Уфа · Видео · Монтаж · Дизайн · </span><span>DANIL66 · Уфа · Видео · Монтаж · Дизайн · </span><span>DANIL66 · Уфа · Видео · Монтаж · Дизайн · </span><span>DANIL66 · Уфа · Видео · Монтаж · Дизайн · </span></div></div>
+  <section class="sec" data-amb id="about">
+    <div class="sec-head" data-reveal><span class="num">04</span><h2 class="streak" data-t="Обо мне">Обо мне</h2></div>
     <div class="wrap">
-      <div class="about">
+      <div class="about" data-reveal>
         <div class="photo"><img src="/static/media/me.jpg" alt="Данил — DANIL66" loading="lazy"></div>
         <div class="txt">
           <span class="tag">Видеограф · монтажёр · дизайнер · SMM</span>
@@ -137,37 +142,37 @@
     </div>
   </section>
 
-  <section class="sec" id="prices">
-    <div class="sec-head"><span class="num">05</span><h2 class="streak" data-t="Прайс">Прайс</h2></div>
+  <section class="sec" data-amb id="prices">
+    <div class="sec-head" data-reveal><span class="num">05</span><h2 class="streak" data-t="Прайс">Прайс</h2></div>
     <div class="wrap">
       <div class="prices">
-        <div class="price"><h4>Монтаж</h4><div class="p">1 200 ₽</div><p>Монтаж из ваших исходников, за ролик</p></div>
-        <div class="price"><h4>Съёмка + монтаж</h4><div class="p"><small>от</small>5 000 ₽</div><p>Выезд и пакет от 3-х роликов</p></div>
-        <div class="price"><h4>Дизайн</h4><div class="p"><small>от</small>4 000 ₽</div><p>Логотип, оформление профиля или разовые макеты</p></div>
-        <div class="price"><h4>SMM под ключ</h4><div class="p">Договорная</div><p>Стратегия, съёмка, монтаж, дизайн, публикации, отчёт</p></div>
+        <div class="price" data-reveal style="--d:0ms"><h4>Монтаж</h4><div class="p">1 200 ₽</div><p>Монтаж из ваших исходников, за ролик</p><a class="more" href="https://t.me/noirout" target="_blank" rel="noopener">Подробнее →</a></div>
+        <div class="price" data-reveal style="--d:90ms"><h4>Съёмка + монтаж</h4><div class="p"><small>от</small>5 000 ₽</div><p>Выезд и пакет от 3-х роликов</p><a class="more" href="https://t.me/noirout" target="_blank" rel="noopener">Подробнее →</a></div>
+        <div class="price" data-reveal style="--d:180ms"><h4>Дизайн</h4><div class="p"><small>от</small>4 000 ₽</div><p>Логотип, оформление профиля или разовые макеты</p><a class="more" href="https://t.me/noirout" target="_blank" rel="noopener">Подробнее →</a></div>
+        <div class="price" data-reveal style="--d:270ms"><h4>SMM под ключ</h4><div class="p">Договорная</div><p>Стратегия, съёмка, монтаж, дизайн, публикации, отчёт</p><a class="more" href="https://t.me/noirout" target="_blank" rel="noopener">Подробнее →</a></div>
       </div>
-      <div class="center"><a class="btn" href="https://t.me/noirout" target="_blank" rel="noopener">Рассчитать под задачу →</a></div>
+      <div class="center" data-reveal><a class="btn" href="https://t.me/noirout" target="_blank" rel="noopener">Рассчитать под задачу →</a></div>
     </div>
   </section>
 
-  <section class="sec" id="contacts">
-    <div class="sec-head"><span class="num">06</span><h2 class="streak" data-t="На связи">На связи</h2></div>
-    <p class="lead">Пиши в любой удобный мессенджер — отвечаю быстрее всего в Telegram.</p>
+  <section class="sec" data-amb id="contacts">
+    <div class="sec-head" data-reveal><span class="num">06</span><h2 class="streak" data-t="На связи">На связи</h2></div>
+    <p class="lead" data-reveal>Пиши в любой удобный мессенджер — отвечаю быстрее всего в Telegram.</p>
     <div class="wrap contacts">
-      <a class="ct main" href="https://t.me/noirout" target="_blank" rel="noopener"><span class="k">TELEGRAM</span><span class="v">@noirout ↗</span></a>
-      <a class="ct" href="https://instagram.com/prostoout" target="_blank" rel="noopener"><span class="k">INSTAGRAM</span><span class="v">@prostoout ↗</span></a>
-      <a class="ct" href="https://vk.ru/prostout" target="_blank" rel="noopener"><span class="k">ВКОНТАКТЕ</span><span class="v">@prostout ↗</span></a>
+      <a data-reveal style="--d:0ms" class="ct main" href="https://t.me/noirout" target="_blank" rel="noopener"><span class="k">TELEGRAM</span><span class="v">@noirout ↗</span></a>
+      <a data-reveal style="--d:110ms" class="ct" href="https://instagram.com/prostoout" target="_blank" rel="noopener"><span class="k">INSTAGRAM</span><span class="v">@prostoout ↗</span></a>
+      <a data-reveal style="--d:220ms" class="ct" href="https://vk.ru/prostout" target="_blank" rel="noopener"><span class="k">ВКОНТАКТЕ</span><span class="v">@prostout ↗</span></a>
     </div>
   </section>
 </main>
 
-<footer>
+<footer data-reveal>
   <img src="brand/66-white.svg" alt="">
   <span>© 2026 DANIL66 · Уфа</span>
   <a href="#top">Наверх ↑</a>
 </footer>
 
 <div class="modal" id="modal" hidden><button class="x" aria-label="Закрыть">×</button><div class="box"></div></div>
-<script src="app.js?v=1"></script>
+<script src="app.js?v=2"></script>
 </body>
 </html>
