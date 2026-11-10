@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Unbounded:wght@500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/static/style.css?v=1794301245">
+  <link rel="stylesheet" href="/static/style.css?v=1794304229">
   <!-- Yandex.Metrika counter -->
   <script type="text/javascript">
       (function(m,e,t,r,i,k,a){
@@ -46,8 +46,7 @@
   <!-- 1. HERO -->
   <section class="hero">
     <div class="hero-bg" aria-hidden="true">
-      <video src="/static/media/showreel-bg.mp4?v=1794303642" poster="/static/media/showreel-bg.jpg?v=1794301245"
-             autoplay muted loop playsinline preload="metadata"></video>
+      <i class="glow g1"></i><i class="glow g2"></i><i class="glow g3"></i><i class="glow g4"></i>
     </div>
     <div class="wrap">
       <p class="eyebrow"><span class="rec"></span>REC · Видеограф · монтажёр · дизайнер · SMM</p>
@@ -612,12 +611,8 @@
 </div>
 
 <script>
-  // Шоурил: фон первого экрана + полная версия со звуком в окне
+  // Шоурил: полная версия со звуком в окне
   (() => {
-    const bg = document.querySelector('.hero-bg video');
-    if (matchMedia('(prefers-reduced-motion: reduce)').matches) { bg.removeAttribute('autoplay'); bg.pause(); }
-    else new IntersectionObserver(es => es.forEach(e =>
-      e.isIntersecting ? bg.play().catch(() => {}) : bg.pause())).observe(bg);
     const m = document.getElementById('reel-modal'), v = m.querySelector('video');
     const close = () => { v.pause(); m.hidden = true; document.body.style.overflow = ''; };
     document.getElementById('reel-open').onclick = () => {
