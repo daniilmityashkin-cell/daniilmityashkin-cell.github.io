@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /old/
+Disallow: /card/
+Disallow: /danil66/
+Disallow: /tools/
+
+Sitemap: https://portfolio-danil.ru/sitemap.xml

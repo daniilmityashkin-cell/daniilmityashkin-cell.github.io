@@ -1,0 +1,101 @@
+{
+  "reels": [
+    {
+      "title": "Коммерческий Эдит KNIVES",
+      "video": "/kenvforestdemo.mp4",
+      "poster": "/static/media/other/knives-forest-demo.jpg"
+    },
+    {
+      "title": "Speed Ramp University",
+      "video": "/static/media/other/reel-tour.mp4",
+      "poster": "/static/media/other/reel-tour.jpg"
+    },
+    {
+      "title": "KNIVES Fashion Style",
+      "video": "/static/media/other/reel-knives-2.mp4",
+      "poster": "/static/media/other/reel-knives-2.jpg"
+    },
+    {
+      "title": "Edit University",
+      "video": "/static/media/other/reel-edit.mp4",
+      "poster": "/static/media/other/reel-edit.jpg"
+    },
+    {
+      "title": "Субтитры, говорящая голова",
+      "video": "/static/media/other/reel-talk.mp4",
+      "poster": "/static/media/other/reel-talk.jpg"
+    }
+  ],
+  "video": [
+    {
+      "title": "Трендовый Reels",
+      "video": "/пожарdemo.mp4",
+      "poster": "/static/media/other/fire-demo.jpg"
+    },
+    {
+      "title": "Промо-ролик к мероприятию",
+      "video": "/velesovdemo.mp4",
+      "poster": "/static/media/other/velesov-demo.jpg"
+    },
+    {
+      "title": "Кинематографичная съёмка",
+      "video": "/static/media/other/video-field.mp4",
+      "poster": "/static/media/other/video-field.jpg"
+    },
+    {
+      "title": "Ролик для тренажёрного зала",
+      "video": "/static/media/other/video-gym.mp4",
+      "poster": "/static/media/other/video-gym.jpg"
+    },
+    {
+      "title": "Репортаж с мероприятия",
+      "video": "/static/media/other/video-event.mp4",
+      "poster": "/static/media/other/video-event.jpg"
+    },
+    {
+      "title": "Танцевальный номер",
+      "video": "/static/media/other/video-dance.mp4",
+      "poster": "/static/media/other/video-dance.jpg"
+    },
+    {
+      "title": "Эдит в стиле «Очень странных дел»",
+      "video": "/static/media/other/video-stranger.mp4",
+      "poster": "/static/media/other/video-stranger.jpg"
+    },
+    {
+      "title": "Ролик для конкурса",
+      "video": "/static/media/other/video-contest.mp4",
+      "poster": "/static/media/other/video-contest.jpg"
+    }
+  ],
+  "design": [
+    {
+      "title": "Лендинг xamauto.ru — первый экран",
+      "image": "/static/media/xam/site.jpg"
+    },
+    {
+      "title": "Структура лендинга и мобильная версия",
+      "image": "/static/media/xam/landing.jpg"
+    },
+    {
+      "title": "Лид-воронка: сайт → Telegram-бот",
+      "image": "/static/media/xam/funnel.jpg"
+    },
+    {
+      "title": "Логотип: две версии знака",
+      "image": "/static/media/xam/logo.jpg"
+    },
+    {
+      "title": "Палитра и шрифты",
+      "image": "/static/media/xam/palette.jpg"
+    },
+    {
+      "title": "Шаблоны сторис и постов",
+      "image": "/static/media/xam/feed.jpg"
+    },
+    {
+      "title": "Подарочный сертификат",
+      "image": "/static/media/xam/certificate.jpg"
+    }
+  ]
+}
