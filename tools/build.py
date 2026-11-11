@@ -5,6 +5,7 @@
   * обновляет карусели Reels / Видео / Дизайн на главной (index.html);
   * собирает страницы /reels/, /video/, /design/;
   * собирает страницу политики /privacy/ (данные оператора берутся из tools/site.json);
+  * собирает прайс и окна услуг на главной из services.json;
   * собирает sitemap.xml.
 
 Ссылки на файлы получают метку версии из содержимого файла (?v=...), поэтому
@@ -38,6 +39,7 @@ SECTIONS = {
 }
 
 errors = []
+WORKS, SERVICES = {}, {}
 
 
 def ver(url):
@@ -225,6 +227,42 @@ def sitemap():
     return f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{body}\n</urlset>\n'
 
 
+def svc_media(works, ref):
+    sid, title = ref
+    w = next((x for x in works.get(sid, []) if x["title"] == title), None)
+    if not w:
+        errors.append(f"services.json: в works.json нет работы «{title}» в разделе {sid}")
+        return ""
+    if "video" in w:
+        return (f'<div class="svc-m"><video src="{ver(w["video"])}" poster="{ver(w["poster"])}" muted loop playsinline '
+                f'preload="none"></video></div>')
+    return f'<div class="svc-m img"><img src="{ver(w["image"])}" alt="{esc(title)}" loading="lazy"></div>'
+
+
+def price_html(services):
+    cards, modals = [], []
+    for i, (key, s) in enumerate(services.items()):
+        price = (f'<small>от</small>{s["price"]}' if s.get("from") else s["price"])
+        cards.append(f'        <div class="price" data-reveal style="--d:{i * 90}ms"><h4>{esc(s["title"])}</h4><div class="p">{price}</div>'
+                     f'<p>{esc(s["short"])}</p><button type="button" class="more" data-svc="{key}">Подробнее →</button></div>')
+        inc = "".join(f'<div class="svc-i"><b>{esc(a)}</b><p>{esc(b)}</p></div>' for a, b in s["includes"])
+        media = "".join(svc_media(WORKS, r) for r in s.get("media", []))
+        modals.append(f'''  <div class="svc" id="svc-{key}" role="dialog" aria-modal="true" aria-label="{esc(s["title"])}" hidden>
+    <div class="svc-card">
+      <button type="button" class="svc-x" aria-label="Закрыть">×</button>
+      <div class="svc-media">{media}</div>
+      <h3>{esc(s["title"])}</h3>
+      <div class="svc-price">{price}</div>
+      <p class="svc-lead">{esc(s["lead"])}</p>
+      <div class="svc-sep"></div>
+      <span class="svc-tag">Что входит в стоимость</span>
+      <div class="svc-grid">{inc}</div>
+      <a class="btn" href="{TG}" target="_blank" rel="noopener">Обсудить в Telegram →</a>
+    </div>
+  </div>''')
+    return "\n".join(cards), "\n".join(modals)
+
+
 def update_home(home, works):
     for sid in SECTIONS:
         m = re.search(r'(<section class="sec" data-amb id="%s">.*?<div class="stage">\n)(.*?)(\n      </div>)' % sid, home, re.S)
@@ -233,6 +271,15 @@ def update_home(home, works):
             continue
         cards = "\n".join(home_card(w) for w in works[sid])
         home = home[:m.start(2)] + cards + home[m.end(2):]
+    cards, modals = price_html(SERVICES)
+    m = re.search(r'(<div class="prices">\n)(.*?)(\n      </div>)', home, re.S)
+    if m:
+        home = home[:m.start(2)] + cards + home[m.end(2):]
+    else:
+        errors.append("на главной не найден блок прайса")
+    m = re.search(r'<!-- services -->.*?<!-- /services -->', home, re.S)
+    block = "<!-- services -->\n" + modals + "\n<!-- /services -->"
+    home = home[:m.start()] + block + home[m.end():] if m else home.replace("<footer", block + "\n\n<footer", 1)
     home = re.sub(r'<script src="/consent\.js[^"]*" defer></script>',
                   f'<script src="{ver("/consent.js")}" defer></script>', home)
     home = re.sub(r'<link rel="stylesheet" href="[^"]*style\.css[^"]*">',
@@ -243,7 +290,10 @@ def update_home(home, works):
 
 def main():
     check = "--check" in sys.argv
+    global WORKS, SERVICES
     works = json.loads((ROOT / "works.json").read_text(encoding="utf-8"))
+    WORKS = works
+    SERVICES = json.loads((ROOT / "services.json").read_text(encoding="utf-8"))
     site = json.loads((ROOT / "tools/site.json").read_text(encoding="utf-8"))
     for sid in SECTIONS:
         if not works.get(sid):
