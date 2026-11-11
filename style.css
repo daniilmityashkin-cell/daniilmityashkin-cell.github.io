@@ -323,3 +323,9 @@ footer a:hover{color:#fff}
   .page .topbar .pills{overflow:visible}
   .page .topbar .pill{padding:11px 16px;font-size:11px}
 }
+
+/* ---- brand protection: no long-press menu, no drag, no selection on the logo and site images ---- */
+.logo,.back img,footer img,.card img,.card video,.wbox img,.wbox video{
+  -webkit-touch-callout:none;-webkit-user-select:none;user-select:none;-webkit-user-drag:none}
+.logo,.back img,footer img{pointer-events:none}
+.hero-in,.back{-webkit-tap-highlight-color:transparent}

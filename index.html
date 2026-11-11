@@ -14,7 +14,7 @@
   <meta name="theme-color" content="#050505">
   <link rel="icon" href="brand/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="fonts/unbounded-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="style.css?v=14">
+  <link rel="stylesheet" href="style.css?v=15">
   <!-- Yandex.Metrika counter -->
   <script type="text/javascript">
       (function(m,e,t,r,i,k,a){
@@ -40,7 +40,7 @@
   <section class="hero" id="top">
     <div class="orb" aria-hidden="true"></div><div class="glow" aria-hidden="true"></div><canvas class="dust" aria-hidden="true"></canvas><div class="veil" aria-hidden="true"></div>
     <div class="hero-in">
-      <img class="logo" src="brand/66-smoke-black.jpg" alt="66 — логотип DANIL66" width="1093" height="916">
+      <img class="logo" draggable="false" src="brand/66-smoke-black.jpg" alt="66 — логотип DANIL66" width="1093" height="916">
       <h1 class="sr">DANIL66</h1>
       <p class="sub">Видео · монтаж · дизайн · SMM</p>
       <nav class="pills" aria-label="Разделы">
@@ -152,12 +152,13 @@
 </main>
 
 <footer data-reveal>
-  <img src="brand/66-white.svg" alt="">
+  <img draggable="false" src="brand/66-white.svg" alt="">
   <span>© 2026 DANIL66 · Уфа</span>
   <a href="#top">Наверх ↑</a>
 </footer>
 
 <div class="modal" id="modal" hidden><button class="x" aria-label="Закрыть">×</button><div class="box"></div></div>
 <script src="app.js?v=2"></script>
+<script>/* no "save image" menu or dragging for the logo and works */document.addEventListener('contextmenu',e=>{if(e.target.closest('img,video,.logo,.card,.wcard'))e.preventDefault()});document.addEventListener('dragstart',e=>{if(e.target.closest('img,video'))e.preventDefault()});</script>
 </body>
 </html>
