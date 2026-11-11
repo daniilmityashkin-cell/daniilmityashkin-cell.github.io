@@ -247,3 +247,38 @@ footer a:hover{color:#fff}
   .card.on{animation:none}
   .marquee .track{animation-duration:70s}
 }
+
+/* ================= WORKS PAGES (/reels/ /video/ /design/) ================= */
+.page .topbar{position:sticky;top:0;z-index:70;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 20px;
+  background:linear-gradient(#050505e6,#050505b0);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.08)}
+.back{display:flex;align-items:center;gap:12px;font:700 11px var(--body);letter-spacing:.18em;text-transform:uppercase;color:#cfcfcf;white-space:nowrap}
+.back img{height:30px;width:auto;opacity:.95}
+.back:hover{color:#fff}
+.page .topbar .pills{margin:0;max-width:none;justify-content:flex-end;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+.page .topbar .pills::-webkit-scrollbar{display:none}
+.page .topbar .pill{padding:10px 14px;flex:none}
+.pill.on{background:#fff;color:#000;border-color:#fff}
+.page .sec{padding-top:72px}
+.page h1.streak{font:800 clamp(34px,7.4vw,92px)/1 var(--head)}
+.count{margin:-34px 0 44px;font:500 11px var(--body);letter-spacing:.28em;text-transform:uppercase;color:var(--muted)}
+.wgrid{display:grid;gap:14px;text-align:left}
+.wgrid.v{grid-template-columns:repeat(4,1fr)}
+.wgrid.h{grid-template-columns:repeat(2,1fr)}
+.wgrid.d{grid-template-columns:repeat(3,1fr)}
+.wcard{cursor:pointer}
+.wbox{position:relative;border-radius:20px;overflow:hidden;background:var(--bg2);border:1px solid rgba(255,255,255,.12);transition:transform .5s cubic-bezier(.2,.8,.2,1),border-color .3s,box-shadow .4s}
+.wgrid.v .wbox{aspect-ratio:9/16}.wgrid.h .wbox{aspect-ratio:16/9}.wgrid.d .wbox{aspect-ratio:4/3;background:#101010}
+.wbox video,.wbox img{width:100%;height:100%;object-fit:cover;filter:grayscale(.25) contrast(1.05);transition:filter .5s,transform .8s cubic-bezier(.2,.8,.2,1)}
+.wgrid.d .wbox img{object-fit:contain;filter:none}
+.wcard:hover .wbox{transform:translateY(-6px);border-color:rgba(255,255,255,.4);box-shadow:0 0 50px rgba(255,255,255,.12)}
+.wcard:hover .wbox video,.wcard:hover .wbox img{filter:none;transform:scale(1.04)}
+.wcard .snd{position:absolute;right:12px;bottom:12px;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.3);font-size:14px;opacity:.8}
+.wcard figcaption{margin-top:12px;font:600 14px/1.4 var(--body);color:#d6d6d6;text-align:center}
+.page .links{margin-top:56px}
+@media (max-width:1000px){.wgrid.v{grid-template-columns:repeat(3,1fr)}.wgrid.d{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:640px){
+  .wgrid.v,.wgrid.d{grid-template-columns:repeat(2,1fr);gap:10px}.wgrid.h{grid-template-columns:1fr}
+  .back span{display:none}.page .topbar{padding:10px 12px}.page .sec{padding-top:56px}.count{margin:-26px 0 32px}
+  .wbox{border-radius:14px}.wcard figcaption{font-size:12px}
+}
+.js .page .pill{opacity:1;transform:none;transition:background .25s,color .25s}   /* works pages have no hero intro */
