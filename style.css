@@ -233,6 +233,17 @@ footer a:hover{color:#fff}
 .sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 .sub{margin-top:30px}
 
-/* no sideways scroll on phones: the drifting light blobs are wider than the screen */
-html,body{overflow-x:hidden;max-width:100%}
+/* no sideways scroll on phones: the drifting light blobs are wider than the screen.
+   Clipped per section (not on html/body: overflow-x on html+body breaks vertical scrolling on some phones). */
 [data-amb]{overflow:hidden}
+
+/* phones / touch screens: drop the heaviest always-on animations so scrolling stays smooth on weak devices */
+@media (hover:none), (max-width:640px){
+  body::after{inset:0;animation:none}                       /* grain overlay: static, viewport-sized (was 200% and moving) */
+  .hero .orb::after{display:none}                           /* rotating blurred highlight */
+  .hero .orb{filter:blur(26px);animation:none}
+  [data-amb]::before{filter:blur(18px);animation:none}
+  .streak::before,.streak::after{animation:none}
+  .card.on{animation:none}
+  .marquee .track{animation-duration:70s}
+}
