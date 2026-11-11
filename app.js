@@ -144,6 +144,27 @@ document.documentElement.classList.add('js');
     new IntersectionObserver(es => { run = es[0].isIntersecting; if (run) requestAnimationFrame(tick); }).observe(hero);
   }
 
+
+  // ---------- service windows ----------
+  let svcOpen = null, svcBack = null;
+  function openSvc(key, btn) {
+    const w = document.getElementById('svc-' + key); if (!w) return;
+    svcBack = btn; svcOpen = w; w.hidden = false; document.body.classList.add('svc-on');
+    document.querySelectorAll('.card video').forEach(v => v.pause());
+    w.querySelectorAll('video').forEach(v => { v.preload = 'auto'; v.play().catch(() => {}); });
+    requestAnimationFrame(() => w.classList.add('open'));
+    w.scrollTop = 0; w.querySelector('.svc-x').focus({ preventScroll: true });
+    goal('service_' + key);
+  }
+  function closeSvc() {
+    const w = svcOpen; if (!w) return; svcOpen = null;
+    w.classList.remove('open'); w.querySelectorAll('video').forEach(v => v.pause());
+    setTimeout(() => { w.hidden = true; document.body.classList.remove('svc-on'); if (svcBack) svcBack.focus({ preventScroll: true }); }, 350);
+  }
+  document.querySelectorAll('[data-svc]').forEach(b => b.addEventListener('click', () => openSvc(b.dataset.svc, b)));
+  document.querySelectorAll('.svc').forEach(w => w.addEventListener('click', e => { if (e.target === w || e.target.closest('.svc-x')) closeSvc(); }));
+  addEventListener('keydown', e => { if (e.key === 'Escape' && svcOpen) closeSvc(); });
+
   // ---------- goals ----------
   document.addEventListener('click', e => { if (e.target.closest('a[href*="t.me/noirout"]')) goal('tg_click'); });
   if (reduce) document.querySelectorAll('.card video').forEach(v => v.removeAttribute('autoplay'));

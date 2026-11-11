@@ -357,3 +357,46 @@ footer span,footer .legal,footer .legal.small,footer > a{font:400 12px/1.7 var(-
 footer .legal a,footer > a{color:#8b8b8b;text-decoration:underline;text-decoration-color:rgba(139,139,139,.45);text-underline-offset:3px;transition:color .2s}
 footer .legal a:hover,footer > a:hover{color:#fff}
 footer img{margin-bottom:6px}
+
+/* ================= SERVICE WINDOWS (like the reference) ================= */
+.price .more{cursor:pointer;background:transparent;color:inherit}
+.svc{position:fixed;inset:0;z-index:320;display:flex;align-items:flex-start;justify-content:center;padding:40px 16px;overflow-y:auto;overscroll-behavior:contain;
+  background:rgba(0,0,0,.72);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);opacity:0;transition:opacity .35s}
+.svc[hidden]{display:none}
+.svc.open{opacity:1}
+.svc-card{position:relative;width:min(880px,100%);margin:auto 0;padding:14px 14px 36px;border-radius:28px;background:#0d0d0d;border:1px solid rgba(255,255,255,.14);
+  box-shadow:0 30px 120px rgba(0,0,0,.7);text-align:center;transform:translateY(40px) scale(.97);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.svc.open .svc-card{transform:none}
+.svc-x{position:absolute;top:22px;right:22px;z-index:2;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(0,0,0,.6);color:#fff;font-size:24px;line-height:1;cursor:pointer}
+.svc-x:hover{background:#fff;color:#000}
+.svc-media{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.svc-m{aspect-ratio:16/10;border-radius:18px;overflow:hidden;background:#161616}
+.svc-m video,.svc-m img{width:100%;height:100%;object-fit:cover;filter:grayscale(.2) contrast(1.05)}
+.svc-m.img img{object-fit:cover;object-position:top}
+.svc h3{font:800 clamp(26px,4.6vw,46px)/1.1 var(--head);margin:34px 20px 8px}
+.svc-price{font:800 clamp(20px,3vw,28px) var(--head)}.svc-price small{font:500 14px var(--body);color:var(--muted);margin-right:8px}
+.svc-lead{max-width:600px;margin:18px auto 0;padding:0 16px;color:#cfcfcf;font-size:16px}
+.svc-sep{width:56px;height:1px;background:rgba(255,255,255,.2);margin:30px auto}
+.svc-tag{display:block;font:700 11px var(--body);letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin-bottom:20px}
+.svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 36px;text-align:left}
+.svc-i{padding:20px 22px;border-radius:20px;background:#141414;border:1px solid rgba(255,255,255,.1)}
+.svc-i b{display:block;font:700 17px var(--body);margin-bottom:6px}
+.svc-i p{font-size:14px;line-height:1.55;color:#a9a9a9}
+.svc .btn{margin-top:32px}
+body.svc-on{overflow:hidden}
+@media (max-width:640px){
+  .svc{padding:0;align-items:flex-end}
+  .svc-card{width:100%;margin:0;margin-top:48px;border-radius:24px 24px 0 0;padding:10px 10px 32px;transform:translateY(100%)}
+  .svc-x{top:16px;right:16px;width:40px;height:40px}
+  .svc-media{gap:6px}.svc-m{border-radius:14px;aspect-ratio:4/5}
+  .svc h3{margin:24px 12px 6px}
+  .svc-lead{font-size:15px}
+  .svc-grid{grid-template-columns:1fr;padding:0 6px;gap:8px}
+  .svc-i{padding:16px 18px}
+}
+@media (prefers-reduced-motion:reduce){.svc,.svc-card{transition:none}}
+@media (max-width:640px){
+  /* bottom sheet that is still scrollable from its very top when taller than the screen */
+  .svc{align-items:flex-start;padding-top:48px}
+  .svc-card{margin:auto 0 0}
+}
