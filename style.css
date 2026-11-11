@@ -350,3 +350,10 @@ footer .legal a{color:#bdbdbd;text-decoration:underline;text-underline-offset:3p
 .doc p{color:#c9c9c9;margin-bottom:12px}
 .doc a{color:#fff;text-decoration:underline;text-underline-offset:3px}
 .doc .muted{color:var(--muted)}
+
+/* footer: one calm, uniform text style for every line */
+footer{gap:12px;padding:72px 20px 56px;text-align:center}
+footer span,footer .legal,footer .legal.small,footer > a{font:400 12px/1.7 var(--body);letter-spacing:.04em;text-transform:none;color:#8b8b8b;max-width:620px;padding:0}
+footer .legal a,footer > a{color:#8b8b8b;text-decoration:underline;text-decoration-color:rgba(139,139,139,.45);text-underline-offset:3px;transition:color .2s}
+footer .legal a:hover,footer > a:hover{color:#fff}
+footer img{margin-bottom:6px}
