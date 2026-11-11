@@ -400,3 +400,14 @@ body.svc-on{overflow:hidden}
   .svc{align-items:flex-start;padding-top:48px}
   .svc-card{margin:auto 0 0}
 }
+
+/* service previews: each tile keeps its own shape; the row is justified to one height, nothing is cropped */
+.svc-media{display:flex;gap:10px;align-items:stretch}
+.svc-m{flex:var(--r) 1 0;aspect-ratio:var(--r);min-width:0;border-radius:18px;overflow:hidden;background:#161616}
+.svc-m video,.svc-m img,.svc-m.img img{width:100%;height:100%;object-fit:contain;object-position:center;filter:none}
+@media (max-width:640px){
+  /* phone: a swipeable strip of full-height previews */
+  .svc-media{gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin:0 -10px;padding:0 10px}
+  .svc-media::-webkit-scrollbar{display:none}
+  .svc-m{flex:0 0 auto;height:min(52vh,380px);width:auto;aspect-ratio:var(--r);border-radius:14px;scroll-snap-align:center}
+}

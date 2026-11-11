@@ -227,16 +227,44 @@ def sitemap():
     return f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{body}\n</urlset>\n'
 
 
+def img_size(url):
+    """(width, height) of a local JPEG/PNG without extra libraries"""
+    f = ROOT / url.lstrip("/")
+    try:
+        data = f.read_bytes()
+    except OSError:
+        return None
+    if data[:8] == b"\x89PNG\r\n\x1a\n":
+        return int.from_bytes(data[16:20], "big"), int.from_bytes(data[20:24], "big")
+    i = 2
+    while i < len(data) - 9:
+        if data[i] != 0xFF:
+            i += 1
+            continue
+        marker = data[i + 1]
+        if marker in (0xC0, 0xC1, 0xC2):
+            return int.from_bytes(data[i + 7:i + 9], "big"), int.from_bytes(data[i + 5:i + 7], "big")
+        i += 2 + int.from_bytes(data[i + 2:i + 4], "big")
+    return None
+
+
 def svc_media(works, ref):
+    """preview tile keeping the work's own shape (vertical 9:16, horizontal 16:9, design by its size): nothing is cropped"""
     sid, title = ref
     w = next((x for x in works.get(sid, []) if x["title"] == title), None)
     if not w:
         errors.append(f"services.json: в works.json нет работы «{title}» в разделе {sid}")
         return ""
     if "video" in w:
-        return (f'<div class="svc-m"><video src="{ver(w["video"])}" poster="{ver(w["poster"])}" muted loop playsinline '
-                f'preload="none"></video></div>')
-    return f'<div class="svc-m img"><img src="{ver(w["image"])}" alt="{esc(title)}" loading="lazy"></div>'
+        ratio = 9 / 16 if sid == "reels" else 16 / 9
+        size = img_size(w["poster"])
+        if size and sid != "reels":
+            ratio = size[0] / size[1]
+        return (f'<div class="svc-m" style="--r:{ratio:.4f}"><video src="{ver(w["video"])}" poster="{ver(w["poster"])}" '
+                f'muted loop playsinline preload="none"></video></div>')
+    size = img_size(w["image"]) or (4, 3)
+    return (f'<div class="svc-m img" style="--r:{size[0] / size[1]:.4f}"><img src="{ver(w["image"])}" alt="{esc(title)}" '
+            f'loading="lazy"></div>')
 
 
 def price_html(services):
