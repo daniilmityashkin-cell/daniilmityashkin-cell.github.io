@@ -260,7 +260,7 @@ def svc_media(works, ref):
         size = img_size(w["poster"])
         if size and sid != "reels":
             ratio = size[0] / size[1]
-        return (f'<div class="svc-m" style="--r:{ratio:.4f}"><video src="{ver(w["video"])}" poster="{ver(w["poster"])}" '
+        return (f'<div class="svc-m{" vert" if ratio < 1 else ""}" style="--r:{ratio:.4f}"><video src="{ver(w["video"])}" poster="{ver(w["poster"])}" '
                 f'muted loop playsinline preload="none"></video></div>')
     size = img_size(w["image"]) or (4, 3)
     return (f'<div class="svc-m img" style="--r:{size[0] / size[1]:.4f}"><img src="{ver(w["image"])}" alt="{esc(title)}" '
