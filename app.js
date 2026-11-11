@@ -78,7 +78,7 @@ document.documentElement.classList.add('js');
     render();
   });
 
-  // ---------- modal (showreel + design images) ----------
+  // ---------- modal (design images) ----------
   const modal = document.getElementById('modal'), box = modal.querySelector('.box');
   function openModal(src, kind) {
     box.innerHTML = kind === 'img' ? `<img src="${src}" alt="">` : `<video src="${src}" controls playsinline autoplay></video>`;
@@ -88,7 +88,6 @@ document.documentElement.classList.add('js');
   function closeModal() { box.innerHTML = ''; modal.hidden = true; document.body.style.overflow = ''; }
   modal.addEventListener('click', e => { if (e.target === modal || e.target.classList.contains('x')) closeModal(); });
   addEventListener('keydown', e => { if (e.key === 'Escape' && !modal.hidden) closeModal(); });
-  document.querySelectorAll('[data-reel]').forEach(b => b.addEventListener('click', () => { openModal(b.dataset.reel, 'video'); goal('showreel_open'); }));
 
 
   // ================= motion layer =================
