@@ -1,0 +1,16 @@
+name: Проверка сайта
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Сайт собран из works.json и все файлы на месте
+        run: python3 tools/build.py --check
+      - name: Нет битых ссылок
+        run: python3 tools/check_links.py
