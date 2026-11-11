@@ -43,7 +43,6 @@
       <p class="lead">Беру бизнес с нуля: упаковка профиля, фирменный стиль, сценарии, съёмка, монтаж, публикации и воронка заявок.</p>
       <div class="actions">
         <a href="#works" class="btn">Смотреть работы</a>
-        <button type="button" class="btn btn-ghost" id="reel-open">▶ Шоурил со звуком</button>
         <a href="https://t.me/noirout" class="btn btn-ghost" target="_blank" rel="noopener">Написать в TG</a>
         
       </div>
@@ -465,30 +464,13 @@
 
 
 
-<div class="reel-modal" id="reel-modal" hidden>
-  <button type="button" class="reel-close" aria-label="Закрыть">×</button>
-  <video src="/showreel.mp4?v=1794336819" controls playsinline preload="none"></video>
-</div>
-
 <script>
-  // Шоурил: полная версия со звуком в окне
-  (() => {
-    const m = document.getElementById('reel-modal'), v = m.querySelector('video');
-    const close = () => { v.pause(); m.hidden = true; document.body.style.overflow = ''; };
-    document.getElementById('reel-open').onclick = () => {
-      m.hidden = false; document.body.style.overflow = 'hidden'; v.currentTime = 0; v.play().catch(() => {});
-    };
-    m.addEventListener('click', e => { if (e.target !== v) close(); });
-    addEventListener('keydown', e => { if (e.key === 'Escape' && !m.hidden) close(); });
-  })();
-
   // Цели Яндекс Метрики
   const goal = n => { try { ym(114162135, 'reachGoal', n); } catch (e) {} };
   document.addEventListener('click', e => {
     const a = e.target.closest('a[href*="t.me/noirout"]');
     if (a) goal('tg_click');
   });
-  document.getElementById('reel-open').addEventListener('click', () => goal('showreel_open'));
 
   // Видео играют без звука, пока видны; клик включает звук (остальные глушатся)
   const vids = [...document.querySelectorAll('.clip video')];
