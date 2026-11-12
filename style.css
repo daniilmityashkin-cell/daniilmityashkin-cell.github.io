@@ -443,3 +443,18 @@ body.svc-on{overflow:hidden}
   .about .photo img{object-position:52% 15%}
   .about .txt{margin-top:-70px;padding:0 20px 34px}
 }
+/* keep the whole head in frame: anchor the portrait to its top edge */
+.about .photo img{object-position:50% 0}
+@media (max-width:640px){.about .photo img{object-position:52% 0}}
+
+/* ---- About: the finished DANIL66 poster, shown whole (no crop, no fade, no grain) ---- */
+.about .photo{height:auto;min-height:0;overflow:visible;padding:24px 24px 0}
+.about .photo::before,.about .photo::after{display:none}
+.about .photo img{position:static;display:block;width:min(560px,100%);height:auto;margin:0 auto;border-radius:22px;object-fit:contain;object-position:center;filter:none;
+  box-shadow:0 30px 90px rgba(0,0,0,.55);-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;-webkit-user-drag:none}
+.about .txt{margin-top:0;padding:34px 56px 52px}
+@media (max-width:640px){
+  .about .photo{height:auto;max-height:none;padding:12px 12px 0}
+  .about .photo img{width:100%;border-radius:16px}
+  .about .txt{margin-top:0;padding:26px 20px 34px}
+}
