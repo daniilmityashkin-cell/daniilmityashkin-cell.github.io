@@ -165,22 +165,6 @@ document.documentElement.classList.add('js');
   document.querySelectorAll('.svc').forEach(w => w.addEventListener('click', e => { if (e.target === w || e.target.closest('.svc-x')) closeSvc(); }));
   addEventListener('keydown', e => { if (e.key === 'Escape' && svcOpen) closeSvc(); });
 
-
-  // ---------- sticky section menu (appears after the first screen, highlights the current section) ----------
-  const snav = document.querySelector('.snav');
-  if (snav) {
-    const links = [...snav.querySelectorAll('a[data-sec]')];
-    const secs = links.map(a => document.getElementById(a.dataset.sec));
-    const first = document.querySelector('.hero');
-    const upd = () => {
-      const on = scrollY > (first ? first.offsetHeight * .55 : 400);
-      snav.classList.toggle('show', on); document.body.classList.toggle('snav-on', on);
-      let cur = -1; secs.forEach((s, i) => { if (s && s.getBoundingClientRect().top < innerHeight * .35) cur = i; });
-      links.forEach((a, i) => a.classList.toggle('on', i === cur));
-    };
-    addEventListener('scroll', upd, { passive: true }); addEventListener('resize', upd); upd();
-  }
-
   // ---------- goals ----------
   document.addEventListener('click', e => { if (e.target.closest('a[href*="t.me/noirout"]')) goal('tg_click'); });
   if (reduce) document.querySelectorAll('.card video').forEach(v => v.removeAttribute('autoplay'));
