@@ -118,7 +118,9 @@ def home_card(w):
     if "video" in w:
         return (f'      <figure class="card" data-cap="{t}"><video src="{ver(w["video"])}" poster="{ver(w["poster"])}" '
                 f'muted loop playsinline preload="none"></video><span class="snd" aria-hidden="true">♪</span></figure>')
-    return f'      <figure class="card" data-cap="{t}"><img src="{ver(w["image"])}" alt="{t}" loading="lazy"></figure>'
+    size = img_size(w["image"]) or (4, 3)
+    return (f'      <figure class="card" data-cap="{t}" style="--r:{size[0] / size[1]:.4f}"><img src="{ver(w["image"])}" '
+            f'alt="{t}" loading="lazy"></figure>')
 
 
 def grid_card(w, i):
@@ -127,11 +129,14 @@ def grid_card(w, i):
         media = (f'<video src="{ver(w["video"])}" poster="{ver(w["poster"])}" muted loop playsinline preload="none"></video>'
                  f'<span class="snd" aria-hidden="true">♪</span>')
         kind = "video"
+        box = ""
     else:
         media = f'<img src="{ver(w["image"])}" alt="{t}" loading="lazy">'
         kind = "image"
+        size = img_size(w["image"]) or (4, 3)
+        box = f' style="--r:{size[0] / size[1]:.4f}"'
     return (f'      <figure class="wcard" data-kind="{kind}" data-reveal style="--d:{(i % 4) * 90}ms">'
-            f'<div class="wbox">{media}</div><figcaption>{t}</figcaption></figure>')
+            f'<div class="wbox"{box}>{media}</div><figcaption>{t}</figcaption></figure>')
 
 
 def section_page(sid, works, css):
