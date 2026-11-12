@@ -11,7 +11,10 @@ document.documentElement.classList.add('js');
     const n = cards.length;
     const cap = flow.querySelector('.cap'), cnt = flow.querySelector('.cnt');
     let cur = 0, visible = false;
-    const step = () => parseFloat(getComputedStyle(flow).getPropertyValue('--step')) || 250;
+    const probe = document.createElement('i');
+    probe.style.cssText = 'position:absolute;visibility:hidden;pointer-events:none;height:0;width:var(--step)';
+    flow.appendChild(probe);
+    const step = () => probe.getBoundingClientRect().width || 250;
     const off = i => { let o = ((i - cur) % n + n) % n; if (o > n / 2) o -= n; return o; };
 
     function render() {
