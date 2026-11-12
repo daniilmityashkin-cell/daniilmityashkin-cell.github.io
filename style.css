@@ -412,3 +412,13 @@ body.svc-on{overflow:hidden}
   .svc-m{flex:0 0 100%;width:100%;height:auto;aspect-ratio:var(--r);border-radius:14px}
   .svc-m.vert{flex:0 0 calc(50% - 4px);width:auto}
 }
+
+@media (max-width:640px){
+  /* only vertical reels in a window: one even row that fits the screen */
+  .svc-media.row{flex-wrap:nowrap}
+  .svc-media.row .svc-m.vert{flex:1 1 0;width:auto;min-width:0}
+}
+/* about photo: the real portrait, face kept in frame on any crop */
+.about .photo img{object-position:50% 22%;filter:grayscale(1) contrast(1.12) brightness(1.08)}
+@media (max-width:900px){.about .photo{min-height:460px}}
+.about .photo img{object-position:50% 18%;filter:contrast(1.04)}

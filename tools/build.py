@@ -275,10 +275,11 @@ def price_html(services):
                      f'<p>{esc(s["short"])}</p><button type="button" class="more" data-svc="{key}">Подробнее →</button></div>')
         inc = "".join(f'<div class="svc-i"><b>{esc(a)}</b><p>{esc(b)}</p></div>' for a, b in s["includes"])
         media = "".join(svc_media(WORKS, r) for r in s.get("media", []))
+        row = " row" if s.get("media") and all(r[0] == "reels" for r in s["media"]) else ""  # all vertical: keep them in one line
         modals.append(f'''  <div class="svc" id="svc-{key}" role="dialog" aria-modal="true" aria-label="{esc(s["title"])}" hidden>
     <div class="svc-card">
       <button type="button" class="svc-x" aria-label="Закрыть">×</button>
-      <div class="svc-media">{media}</div>
+      <div class="svc-media{row}">{media}</div>
       <h3>{esc(s["title"])}</h3>
       <div class="svc-price">{price}</div>
       <p class="svc-lead">{esc(s["lead"])}</p>
