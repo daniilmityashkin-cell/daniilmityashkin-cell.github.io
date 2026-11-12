@@ -483,20 +483,3 @@ body.svc-on{overflow:hidden}
   .flow.d .stage{height:calc(var(--h) + 40px)}
   .flow.d .card{width:min(calc(var(--h)*var(--r,1.3333)),84vw);height:auto}
 }
-
-/* ---- sticky section menu on the home page ---- */
-.snav{position:fixed;top:0;left:0;right:0;z-index:75;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 20px;
-  background:linear-gradient(#050505ee,#050505b8);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.08);
-  transform:translateY(-110%);opacity:0;pointer-events:none;transition:transform .45s cubic-bezier(.2,.8,.2,1),opacity .3s}
-.snav.show{transform:none;opacity:1;pointer-events:auto}
-.snav .logo-link img{height:30px;width:auto;display:block;opacity:.95}
-.snav .pills{margin:0;max-width:none;justify-content:flex-end;flex-wrap:nowrap}
-.snav .pill{padding:10px 14px;flex:none;opacity:1!important;transform:none!important;transition:background .25s,color .25s!important}
-.snav .pill.on{background:#fff;color:#000;border-color:#fff}
-body.snav-on .hud.tl,body.snav-on .hud.tr{opacity:0;transition:opacity .3s}
-@media (max-width:640px){
-  .snav{padding:9px 10px;gap:0}
-  .snav .logo-link{display:none}
-  .snav .pills{width:100%;justify-content:space-between;gap:5px}
-  .snav .pill{flex:1 1 auto;padding:10px 4px;font-size:10px;letter-spacing:.08em;text-align:center}
-}
