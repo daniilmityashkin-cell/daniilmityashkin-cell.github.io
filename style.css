@@ -471,3 +471,15 @@ body.svc-on{overflow:hidden}
   .about .photo img{width:100%;border-radius:0}
   .about .txt{margin-top:-120px;padding:0 20px 34px}
 }
+
+/* ---- landing carousel + grid: every work keeps its own shape, nothing is letterboxed with black bars ---- */
+.flow.d .card{height:auto;width:min(calc(var(--h)*var(--r,1.3333)),86vw);aspect-ratio:var(--r,1.3333)}
+.flow.d .card img{object-fit:cover}
+.wgrid.d{align-items:start}
+.wgrid.d .wbox{aspect-ratio:var(--r,1.3333)}
+.wgrid.d .wbox img{object-fit:cover}
+@media (max-width:640px){
+  .flow.d{--h:min(62vw,300px)}
+  .flow.d .stage{height:calc(var(--h) + 40px)}
+  .flow.d .card{width:min(calc(var(--h)*var(--r,1.3333)),84vw);height:auto}
+}
