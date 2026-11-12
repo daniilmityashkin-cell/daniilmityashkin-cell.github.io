@@ -110,7 +110,7 @@ section{position:relative}
 .center{display:flex;justify-content:center;margin-top:28px}
 
 /* contacts */
-.contacts{display:grid;grid-template-columns:repeat(3,minmax(0,260px));gap:12px;justify-content:center}
+.contacts{display:grid;grid-template-columns:repeat(2,minmax(0,260px));gap:12px;justify-content:center}
 .ct{border:1px solid var(--line);border-radius:22px;padding:28px 20px;display:flex;flex-direction:column;align-items:center;gap:8px;background:#080808;transition:background .3s}
 .ct:hover{background:#111}
 .ct .k{font:700 11px var(--body);letter-spacing:.24em;color:var(--muted)}

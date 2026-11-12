@@ -27,7 +27,6 @@ ROOT = Path(__file__).resolve().parent.parent
 SITE = "https://portfolio-danil.ru"
 TG = "https://t.me/noirout"
 IG = "https://instagram.com/prostoout"
-VK = "https://vk.ru/prostout"
 
 SECTIONS = {
     "reels": dict(num="01", title="Reels", sub="ВЕРТИКАЛЬНЫЕ РОЛИКИ", grid="v",
