@@ -89,7 +89,7 @@ def head(title, desc, path, css_ver):
 def footer():
     return f'''<footer>
   <img draggable="false" src="/brand/66-white.svg" alt="" width="60" height="57">
-  <span>© 2026 DANIL66. Все права защищены</span>
+  <span>© DANIL66. Все права защищены</span>
   <p class="legal">Все работы, логотип и тексты сайта защищены авторским правом. Копирование и использование без письменного разрешения автора запрещено.<br>
   <a href="/privacy/">Политика обработки персональных данных</a></p>
   <p class="legal small">* Instagram принадлежит компании Meta Platforms Inc., деятельность которой признана экстремистской и запрещена на территории Российской Федерации.</p>
