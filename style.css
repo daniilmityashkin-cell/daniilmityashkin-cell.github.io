@@ -458,3 +458,16 @@ body.svc-on{overflow:hidden}
   .about .photo img{width:100%;border-radius:16px}
   .about .txt{margin-top:0;padding:26px 20px 34px}
 }
+
+/* ---- About: poster fills the whole card edge to edge and fades into the text below ---- */
+.about{max-width:800px;overflow:hidden}
+.about .photo{padding:0;position:relative;line-height:0}
+.about .photo::before{display:block;content:"";position:absolute;top:auto;left:0;right:0;bottom:0;height:40%;z-index:1;pointer-events:none;
+  background:linear-gradient(180deg,rgba(7,7,7,0) 0%,rgba(7,7,7,.55) 38%,rgba(7,7,7,.92) 74%,#070707 100%)}
+.about .photo img{width:100%;border-radius:0;box-shadow:none;margin:0}
+.about .txt{position:relative;z-index:2;margin-top:-170px;padding:0 56px 52px}
+@media (max-width:640px){
+  .about .photo{padding:0}
+  .about .photo img{width:100%;border-radius:0}
+  .about .txt{margin-top:-120px;padding:0 20px 34px}
+}
