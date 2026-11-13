@@ -101,7 +101,7 @@ section{position:relative}
 .btn:hover{transform:translateY(-2px)}
 
 /* prices */
-.prices{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.prices{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
 .price{border:1px solid var(--line);border-radius:22px;padding:30px 22px;display:flex;flex-direction:column;gap:12px;align-items:center;background:#080808;transition:border-color .3s,box-shadow .3s}
 .price:hover{border-color:rgba(255,255,255,.4);box-shadow:0 0 40px rgba(255,255,255,.08)}
 .price h4{font:800 18px var(--head)}
@@ -129,7 +129,7 @@ footer a:hover{color:#fff}
 
 @media (max-width:900px){
   .about{grid-template-columns:1fr}.about .photo{min-height:380px}.about .txt{padding:32px 24px}
-  .prices{grid-template-columns:1fr 1fr}.contacts{grid-template-columns:1fr;max-width:420px;margin-inline:auto}
+  .prices{grid-template-columns:1fr 1fr}.prices .price:last-child:nth-child(odd){grid-column:1/-1}.contacts{grid-template-columns:1fr;max-width:420px;margin-inline:auto}
 }
 @media (max-width:640px){
   .hud{display:none}
